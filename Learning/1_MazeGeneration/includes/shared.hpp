@@ -71,6 +71,8 @@ char const * const  BLOCKS4[16] = {"• ", "╵ ", "╶─", "└─", "╷ ", "
 
 #define ANSI_CLEAR_SCREEN "\033[2J"
 #define ANSI_CURSOR_HOME  "\033[H"
+#define ANSI_HIDE_CURSOR   "\033[?25l"
+#define ANSI_SHOW_CURSOR   "\033[?25h"
 
 
 #define DEBUG 0 // set to 1 to enable debug output
