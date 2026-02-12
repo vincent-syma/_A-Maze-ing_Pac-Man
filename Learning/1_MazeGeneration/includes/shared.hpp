@@ -162,6 +162,60 @@ public:
     Cell& get_cell(uint16_t x, uint16_t y) { return cells[y * width + x]; }
     const Cell& get_cell(uint16_t x, uint16_t y) const { return cells[y * width + x]; }
 
+    void flip_vertically() {
+        uint16_t new_width = width * 2 - 1;
+        uint16_t new_height = height;
+        std::vector<Cell> new_cells(new_width * new_height);
+        for (uint16_t y = 0; y < height; ++y) {
+            for (uint16_t x = 0; x < width; ++x) {
+                new_cells[y * new_width + x] = cells[y * width + x];
+            }
+            if (new_cells[y * new_width + width - 1].connections & 8) {
+                new_cells[y * new_width + width - 1].connections |= 2; // add west connection if east connection was present
+                new_cells[y * new_width + width - 1].connectionNumber += 1;
+            }
+            for (uint16_t x = new_width - 1; x >= width; --x) {
+                new_cells[y * new_width + x] = cells[y * width + (width - 1 - (x - width + 1))];
+                uint8_t connections = new_cells[y * new_width + x].connections;
+                new_cells[y * new_width + x].connections &= 5; // keep north and south connections, remove east and west
+                new_cells[y * new_width + x].connections |= (connections & 2) * 4; // add east connection if west connection was present
+                new_cells[y * new_width + x].connections |= (connections & 8) / 4; // add west connection if east connection was present
+            }
+        }
+        cells = std::move(new_cells);
+        width = new_width;
+        height = new_height;
+    };
+
+    void flip_horizontally() {
+        uint16_t new_width = width;
+        uint16_t new_height = height * 2 - 1;
+        std::vector<Cell> new_cells(new_width * new_height);
+        for (uint16_t y = 0; y < height; ++y) {
+            for (uint16_t x = 0; x < width; ++x) {
+                new_cells[y * new_width + x] = cells[y * width + x];
+            }
+        }
+        for (uint16_t x = 0; x < width; ++x) {
+            if (new_cells[(height - 1) * new_width + x].connections & 1) {
+                    new_cells[(height - 1) * new_width + x].connections |= 4; // add south connection if north connection was present
+                    new_cells[(height - 1) * new_width + x].connectionNumber += 1;
+            }
+        }
+        for (uint16_t y = height; y < new_height; ++y) {
+            for (uint16_t x = 0; x < width; ++x) {
+                new_cells[y * new_width + x] = cells[(height - 1 - (y - height + 1)) * width + x];
+                uint8_t connections = new_cells[y * new_width + x].connections;
+                new_cells[y * new_width + x].connections &= 10; // keep east and west connections, remove north and south
+                new_cells[y * new_width + x].connections |= (connections & 1) * 4; // add north connection if south connection was present
+                new_cells[y * new_width + x].connections |= (connections & 4) / 4; // add south connection if north connection was present
+            }
+        }
+        cells = std::move(new_cells);
+        width = new_width;
+        height = new_height;
+    };
+
 private:
     uint16_t width;
     uint16_t height;

@@ -32,9 +32,15 @@ public:
 
     void remove_deadends();
 
+    void increase_connections();
+
+    void flip_horizontally();
+
+    void flip_vertically();
+
 private:
-    uint8_t m_width;
-    uint8_t m_height;
+    uint8_t m_width; // not needed
+    uint8_t m_height; // not needed
     uint32_t m_seed;
     // std::vector<Cell>   m_maze;
     Maze                m_maze;

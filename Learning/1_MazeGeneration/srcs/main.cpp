@@ -44,12 +44,12 @@ int	main(int argc, char* argv[])
 	mg.remove_deadends();
 
 	// increase connections
-
-	// flip horizontally
-	
+	mg.increase_connections();
 	// flip vertically
-	
-	
+	mg.flip_vertically();
+	// flip horizontally
+	mg.flip_horizontally();
+
 	std::vector<Maze> maze_history = mg.share_maze_history();
 	visualise_maze(maze_history);
 	// convert maze to map

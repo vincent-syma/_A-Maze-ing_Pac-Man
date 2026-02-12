@@ -51,12 +51,12 @@ void    visualise_maze(std::vector<Maze>& maze_history)
     }
     std::ios::sync_with_stdio(false); // Disable synchronization with C I/O for faster input
     std::cin.tie(nullptr); // Untie cin from cout to prevent flushing on input
-    std::cout << ANSI_CLEAR_SCREEN;
+    std::cout << ANSI_CLEAR_SCREEN << ANSI_CURSOR_HOME << std::flush; // Clear the screen and move cursor to home position
     while (true) {
         for (int j = 0; j < 5; ++j) {
             connectionNumber[j] = 0;
         }
-        std::cout << ANSI_CURSOR_HOME;
+        std::cout << ANSI_CLEAR_SCREEN << ANSI_CURSOR_HOME;
         std::cout << "Press 'Q' to exit: ";
         if (i < 0) {
             i = 0;
@@ -100,7 +100,7 @@ void    visualise_maze(std::vector<Maze>& maze_history)
                 std::cout << BLOCKS4[maze.get_cell(x, y).connections];
                 std::cout << ANSII_RESET;
             }
-            std::cout << "\n";
+            std::cout << "    \n";
         }
         std::cout << "Connection numbers: ";
         for (int j = 0; j < 5; ++j) {
@@ -108,7 +108,7 @@ void    visualise_maze(std::vector<Maze>& maze_history)
             if (j < 4)
                 std::cout << ", ";
         }
-        std::cout << "                   " << std::endl;
+        std::cout << "     " << std::endl;
         char c;
         int r = read(STDIN_FILENO, &c, 1);
         if (r < 0) {

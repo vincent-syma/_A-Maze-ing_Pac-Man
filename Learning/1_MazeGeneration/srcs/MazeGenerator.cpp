@@ -234,3 +234,17 @@ void MazeGenerator::remove_deadends() {
         }
     }
 }
+
+void MazeGenerator::increase_connections() {
+    // tbd
+}
+
+void MazeGenerator::flip_horizontally() {
+    m_maze.flip_horizontally();
+    m_maze_history.push_back(m_maze);
+}
+
+void MazeGenerator::flip_vertically() {
+    m_maze.flip_vertically();
+    m_maze_history.push_back(m_maze);
+}
