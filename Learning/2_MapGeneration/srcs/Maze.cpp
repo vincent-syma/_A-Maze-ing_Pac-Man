@@ -8,7 +8,7 @@
 
 Maze::Maze(uint16_t width, uint16_t height) : m_width(width),
                                               m_height(height),
-                                              m_cells(width * m_height) {};
+                                              m_cells(width * height) {};
 
 
 uint16_t Maze::get_width() const {

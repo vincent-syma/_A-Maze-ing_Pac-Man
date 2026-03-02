@@ -39,5 +39,10 @@
 
 # debug information files
 *.dwo
+
+#custom
+build
 .DS_Store
-Learning/1_MazeGeneration/maze_generator
+maze_generator
+map_generator
+graphic_map

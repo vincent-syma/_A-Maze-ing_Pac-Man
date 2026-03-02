@@ -9,6 +9,8 @@
 void    visualise_maze(std::vector<Maze>& maze_history);
 void    visualise_map(std::vector<Map>& map_history);
 
+void    graphics_map(std::vector<Map>& map_history);
+
 // add options to add seed, width, height, algorithm
 int	main(int argc, char* argv[])
 {
@@ -67,6 +69,7 @@ int	main(int argc, char* argv[])
 	std::vector<Map> map_history = map.share_map_history();
 	visualise_map(map_history);
 
+	graphics_map(map_history);
 	//add Map Editor next time
 	return (0);
 }
