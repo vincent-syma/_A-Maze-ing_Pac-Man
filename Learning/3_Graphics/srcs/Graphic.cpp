@@ -5,7 +5,7 @@
 #include "Map.hpp"
 
 const int TILE_SIZE = 32;
-const int WINDOW_WIDTH = 800;
+const int WINDOW_WIDTH = 1000;
 const int WINDOW_HEIGHT = 800;
 
 // =========================
@@ -110,6 +110,66 @@ void draw_map2(SDL_Renderer* renderer, const Map& map)
     }
 }
 
+void draw_map3(SDL_Renderer* renderer, const Map& map)
+{
+    static std::vector<SDL_Texture*> tiles;
+    static bool initialized = false;
+
+    if (!initialized)
+    {
+        SDL_Texture* tilesheet = load_texture(renderer, "assets/paths_1x16.png");
+        if (!tilesheet) return;
+
+        tiles = split_tiles(renderer, tilesheet, 16); // 0=WALL, 1=PATH
+        SDL_DestroyTexture(tilesheet);
+        initialized = true;
+    }
+
+    SDL_FRect dstRect = {0, 0, TILE_SIZE, TILE_SIZE};
+
+    for (int y = 0; y < map.get_height(); ++y)
+    {
+        for (int x = 0; x < map.get_width(); ++x)
+        {
+            dstRect.x = x * TILE_SIZE;
+            dstRect.y = y * TILE_SIZE;
+
+            SDL_Texture* tex = tiles[map.get_cell(x, y).path];
+            SDL_RenderTexture(renderer, tex, nullptr, &dstRect);
+        }
+    }
+}
+
+void draw_map4(SDL_Renderer* renderer, const Map& map)
+{
+    static std::vector<SDL_Texture*> tiles;
+    static bool initialized = false;
+
+    if (!initialized)
+    {
+        SDL_Texture* tilesheet = load_texture(renderer, "assets/walls_1x14.png");
+        if (!tilesheet) return;
+
+        tiles = split_tiles(renderer, tilesheet, 16); // 0=WALL, 1=PATH
+        SDL_DestroyTexture(tilesheet);
+        initialized = true;
+    }
+
+    SDL_FRect dstRect = {0, 0, TILE_SIZE, TILE_SIZE};
+
+    for (int y = 0; y < map.get_height(); ++y)
+    {
+        for (int x = 0; x < map.get_width(); ++x)
+        {
+            dstRect.x = x * TILE_SIZE;
+            dstRect.y = y * TILE_SIZE;
+
+            SDL_Texture* tex = tiles[map.get_cell(x, y).wall];
+            SDL_RenderTexture(renderer, tex, nullptr, &dstRect);
+        }
+    }
+}
+
 // =========================
 // Main graphics function
 // =========================
@@ -160,8 +220,10 @@ void graphics_map(Map& map)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        draw_map1(renderer, map);
-        draw_map2(renderer, map);
+        // draw_map1(renderer, map);
+        // draw_map2(renderer, map);
+        // draw_map3(renderer, map);
+        draw_map4(renderer, map);
 
         SDL_RenderPresent(renderer);
     }

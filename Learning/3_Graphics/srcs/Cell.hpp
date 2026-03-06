@@ -9,6 +9,8 @@ struct Cell {
     CellType status = CellType::EMPTY;
     uint8_t connectionNumber = 0;
     uint8_t connections = 0;  // bitmask for connections: 1 = North, 2 = East, 4 = South, 8 = West
+    uint8_t path = 0;
+    uint8_t wall = 0;
 };
 
 #endif //CELL_HPP

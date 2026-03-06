@@ -28,41 +28,110 @@ Map::Map(Maze maze)
             uint16_t map_y = y * 3 + 1;
             if (maze_cell.connectionNumber) {
                 m_cells[map_y * m_width + map_x].status = CellType::PATH;
-            } else {
-                m_cells[map_y * m_width + map_x].status = CellType::WALL;
-            }
-            // m_cells[map_y * m_width + map_x].connections = maze_cell.connections;
-            // m_cells[map_y * m_width + map_x].connectionNumber = maze_cell.connectionNumber;
-            // m_cells[map_y * m_width + map_x].visited = false;
-            if (maze_cell.connections & 1) { // North
-                m_cells[(map_y - 1) * m_width + map_x].status = CellType::PATH;
+                m_cells[map_y * m_width + map_x].wall = 13;
+                m_cells[map_y * m_width + map_x].path = maze_cell.connections;
+                // m_cells[map_y * m_width + map_x].connectionNumber = maze_cell.connectionNumber;
+                // m_cells[map_y * m_width + map_x].visited = false;
+                if (maze_cell.connections & 1) { // North
+                    m_cells[(map_y - 1) * m_width + map_x].status = CellType::PATH;
+                    m_cells[(map_y - 1) * m_width + map_x].path = 5;
+                    m_cells[(map_y - 1) * m_width + map_x].wall = 13;
+                }
+                else {
+                    m_cells[(map_y - 1) * m_width + map_x].status = CellType::WALL;
+                    m_cells[(map_y - 1) * m_width + map_x].wall = 8;
+                }
+                if (maze_cell.connections & 2) { // East
+                    m_cells[map_y * m_width + (map_x + 1)].status = CellType::PATH;
+                    m_cells[map_y * m_width + (map_x + 1)].path = 10;
+                    m_cells[map_y * m_width + (map_x + 1)].wall = 13;
+                }
+                else {
+                    m_cells[map_y * m_width + (map_x + 1)].status = CellType::WALL;
+                    m_cells[map_y * m_width + (map_x + 1)].wall = 5;
+                }
+                if (maze_cell.connections & 4) { // South
+                    m_cells[(map_y + 1) * m_width + map_x].status = CellType::PATH;
+                    m_cells[(map_y + 1) * m_width + map_x].path = 5;
+                    m_cells[(map_y + 1) * m_width + map_x].wall = 13;
+                }
+                else {
+                    m_cells[(map_y + 1) * m_width + map_x].status = CellType::WALL;
+                    m_cells[(map_y + 1) * m_width + map_x].wall = 6;
+                }
+                if (maze_cell.connections & 8) { // West
+                    m_cells[map_y * m_width + (map_x - 1)].status = CellType::PATH;
+                    m_cells[map_y * m_width + (map_x - 1)].path = 10;
+                    m_cells[map_y * m_width + (map_x - 1)].wall = 13;
+                }
+                else {
+                    m_cells[map_y * m_width + (map_x - 1)].status = CellType::WALL;
+                    m_cells[map_y * m_width + (map_x - 1)].wall = 7;
+                }
+                m_cells[(map_y - 1) * m_width + (map_x - 1)].status = CellType::WALL;
+                if ((maze_cell.connections & 8) && (maze_cell.connections & 1)) { // west && north
+                    m_cells[(map_y - 1) * m_width + (map_x - 1)].wall = 12; 
+                }
+                else if (maze_cell.connections & 8) { // west
+                    m_cells[(map_y - 1) * m_width + (map_x - 1)].wall = 8; 
+                }
+                else if (maze_cell.connections & 1) { // north
+                    m_cells[(map_y - 1) * m_width + (map_x - 1)].wall = 7; 
+                }
+                else {
+                    m_cells[(map_y - 1) * m_width + (map_x - 1)].wall = 4;
+                }
+                m_cells[(map_y - 1) * m_width + (map_x + 1)].status = CellType::WALL;
+                if ((maze_cell.connections & 2) && (maze_cell.connections & 1)) { // east && north
+                    m_cells[(map_y - 1) * m_width + (map_x + 1)].wall = 11;
+                }
+                else if (maze_cell.connections & 2) { // east
+                    m_cells[(map_y - 1) * m_width + (map_x + 1)].wall = 8;
+                }
+                else if (maze_cell.connections & 1) { // north
+                    m_cells[(map_y - 1) * m_width + (map_x + 1)].wall = 5;
+                }
+                else {
+                    m_cells[(map_y - 1) * m_width + (map_x + 1)].wall = 3;
+                }
+                m_cells[(map_y + 1) * m_width + (map_x - 1)].status = CellType::WALL;
+                if ((maze_cell.connections & 8) && (maze_cell.connections & 4)) { // west && south
+                    m_cells[(map_y + 1) * m_width + (map_x - 1)].wall = 10;
+                }
+                else if (maze_cell.connections & 8) { // west
+                    m_cells[(map_y + 1) * m_width + (map_x - 1)].wall = 6;
+                }
+                else if (maze_cell.connections & 4) { // south
+                    m_cells[(map_y + 1) * m_width + (map_x - 1)].wall = 7;
+                }
+                else {
+                    m_cells[(map_y + 1) * m_width + (map_x - 1)].wall = 2;
+                }
+                m_cells[(map_y + 1) * m_width + (map_x + 1)].status = CellType::WALL;
+                if ((maze_cell.connections & 2) && (maze_cell.connections & 4)) { // east && south
+                    m_cells[(map_y + 1) * m_width + (map_x + 1)].wall = 9;
+                }
+                else if (maze_cell.connections & 2) { // east
+                    m_cells[(map_y + 1) * m_width + (map_x + 1)].wall = 6;
+                }
+                else if (maze_cell.connections & 4) { // south
+                    m_cells[(map_y + 1) * m_width + (map_x + 1)].wall = 5;
+                }
+                else {
+                    m_cells[(map_y + 1) * m_width + (map_x + 1)].wall = 1;
+                }
             }
             else {
+                m_cells[(map_y - 1) * m_width + (map_x - 1)].status = CellType::WALL;
                 m_cells[(map_y - 1) * m_width + map_x].status = CellType::WALL;
-            }
-            if (maze_cell.connections & 2) { // East
-                m_cells[map_y * m_width + (map_x + 1)].status = CellType::PATH;
-            }
-            else {
-                m_cells[map_y * m_width + (map_x + 1)].status = CellType::WALL;
-            }
-            if (maze_cell.connections & 4) { // South
-                m_cells[(map_y + 1) * m_width + map_x].status = CellType::PATH;
-            }
-            else {
-                m_cells[(map_y + 1) * m_width + map_x].status = CellType::WALL;
-            }
-            if (maze_cell.connections & 8) { // West
-                m_cells[map_y * m_width + (map_x - 1)].status = CellType::PATH;
-            }
-            else {
+                m_cells[(map_y - 1) * m_width + (map_x + 1)].status = CellType::WALL;
                 m_cells[map_y * m_width + (map_x - 1)].status = CellType::WALL;
+                m_cells[map_y * m_width + map_x].status = CellType::WALL;
+                m_cells[map_y * m_width + (map_x + 1)].status = CellType::WALL;
+                m_cells[(map_y + 1) * m_width + (map_x - 1)].status = CellType::WALL;
+                m_cells[(map_y + 1) * m_width + map_x].status = CellType::WALL;
+                m_cells[(map_y + 1) * m_width + (map_x + 1)].status = CellType::WALL;
             }
-            m_cells[(map_y - 1) * m_width + (map_x - 1)].status = CellType::WALL;
-            m_cells[(map_y - 1) * m_width + (map_x + 1)].status = CellType::WALL;
-            m_cells[(map_y + 1) * m_width + (map_x - 1)].status = CellType::WALL;
-            m_cells[(map_y + 1) * m_width + (map_x + 1)].status = CellType::WALL;
-
         }
     }
     m_map_history.push_back(*this);
@@ -95,6 +164,41 @@ void Map::double_line(uint16_t y) {
         uint16_t new_y = old_y + (old_y >= y ? 1 : 0);
         if (old_y == y) {
             new_cells[old_y * m_width + x] = m_cells[i];
+            switch (new_cells[old_y * m_width + x].wall) {
+                case 1:
+                    new_cells[old_y * m_width + x].wall = 5;
+                    break ;
+                case 2:
+                    new_cells[old_y * m_width + x].wall = 7;
+                    break ;
+                case 3:
+                    new_cells[old_y * m_width + x].wall = 0;
+                    break ;
+                case 4:
+                    new_cells[old_y * m_width + x].wall = 0;
+                    break ;
+                case 6:
+                    new_cells[old_y * m_width + x].wall = 13;
+                    break ;
+                case 8:
+                    new_cells[old_y * m_width + x].wall = 0;
+                    break ;
+                case 9:
+                    new_cells[old_y * m_width + x].wall = 13;
+                    break ;
+                case 10:
+                    new_cells[old_y * m_width + x].wall = 13;
+                    break ;
+                case 11:
+                    new_cells[old_y * m_width + x].wall = 5;
+                    break ;
+                case 12:
+                    new_cells[old_y * m_width + x].wall = 7;
+                    break ;
+
+                default:
+                    break ;
+            }
         }
         new_cells[new_y * m_width + x] = m_cells[i];
     }
@@ -110,11 +214,17 @@ void Map::add_portal_line(uint16_t y) {
     uint16_t x = 0;
     while (m_cells[(y * 3 + 1) * m_width + x].status != CellType::PATH) {
          m_cells[(y * 3 + 1) * m_width + x].status = CellType::PATH;
+         m_cells[(y * 3) * m_width + x].wall = 12;
+         m_cells[(y * 3 + 1) * m_width + x].wall = 13;
+         m_cells[(y * 3 + 2) * m_width + x].wall = 10;
          x++;   
     }
     x = m_width - 1;
     while (m_cells[(y * 3 + 1) * m_width + x].status != CellType::PATH) {
          m_cells[(y * 3 + 1) * m_width + x].status = CellType::PATH;
+         m_cells[(y * 3) * m_width + x].wall = 11;
+         m_cells[(y * 3 + 1) * m_width + x].wall = 13;
+         m_cells[(y * 3 + 2) * m_width + x].wall = 9;
          x--;   
     }
     m_map_history.push_back(*this);
