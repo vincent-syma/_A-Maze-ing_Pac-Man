@@ -23,10 +23,13 @@ SDL_SRC_DIR = .sdl_src
 
 SRC = \
 $(SRC_DIR)/main.cpp \
+$(SRC_DIR)/debug/MazeHistory.cpp \
 $(SRC_DIR)/engine/Engine.cpp \
 $(SRC_DIR)/maze/Maze.cpp \
 $(SRC_DIR)/maze/MazeEditor.cpp \
+$(SRC_DIR)/maze/MazeGenerator.cpp \
 $(SRC_DIR)/map/Map.cpp \
+$(SRC_DIR)/map/BoolOverlay.cpp \
 $(SRC_DIR)/map/MapEditor.cpp \
 $(SRC_DIR)/render/SDLRenderer.cpp \
 $(SRC_DIR)/games/pacman/PacmanGame.cpp
