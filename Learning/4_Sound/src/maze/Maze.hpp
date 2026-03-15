@@ -1,22 +1,23 @@
 #pragma once
 
+#include <cstdint>
 #include <vector>
 #include "Cell.hpp"
 
 class Maze
 {
 public:
-    Maze(int w, int h);
+    Maze(std::uint32_t w, std::uint32_t h);
 
-    Cell& get(int x, int y);
-    const Cell& get(int x, int y) const;
+    Cell& get(std::uint32_t x, std::uint32_t y);
+    const Cell& get(std::uint32_t x, std::uint32_t y) const;
 
-    int width() const;
-    int height() const;
+    std::uint32_t width() const;
+    std::uint32_t height() const;
 
 private:
-    int m_width;
-    int m_height;
+    std::uint32_t m_width;
+    std::uint32_t m_height;
     std::vector<Cell> cells;
 
     friend class MazeEditor;

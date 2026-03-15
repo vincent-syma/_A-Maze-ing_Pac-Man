@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "Game.hpp"
+#include "games/Game.hpp"
 
 class Engine
 {

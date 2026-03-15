@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stack>
+#include <cstdint>
 #include "map/Map.hpp"
 #include "map/BoolOverlay.hpp"
 #include "maze/Maze.hpp"
@@ -16,7 +17,7 @@ public:
 
     bool finished() const;
 
-    int stepCount() const;
+    std::uint32_t stepCount() const;
 
     const BoolOverlay& visited() const;
     const BoolOverlay& frontier() const;
@@ -33,6 +34,6 @@ private:
 
     Position m_current;
 
-    int m_step = 0;
+    std::uint32_t m_step = 0U;
     bool m_finished = false;
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/Game.hpp"
+#include "games/Game.hpp"
 #include "map/Map.hpp"
 #include "maze/Maze.hpp"
 
@@ -12,6 +12,5 @@ public:
     void render() override;
 
 private:
-    Maze maze{21,21};
-    Map map{43,43};
+    Map map{0U, 0U};
 };

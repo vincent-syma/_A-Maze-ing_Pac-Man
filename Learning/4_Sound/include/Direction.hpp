@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-enum Direction : uint8_t
+enum Direction : std::uint8_t
 {
     NORTH = 1,
     EAST  = 2,

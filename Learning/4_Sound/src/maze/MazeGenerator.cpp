@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "MazeGenerator.hpp"
 
 MazeGenerator::MazeGenerator(Maze& maze)
@@ -15,8 +16,8 @@ void MazeGenerator::reset()
     while (!m_stack.empty())
         m_stack.pop();
 
-    m_current = {0,0};
-    m_step = 0;
+    m_current = {0U, 0U};
+    m_step = 0U;
     m_finished = false;
 }
 
@@ -35,7 +36,7 @@ bool MazeGenerator::step()
     //placeholder
     m_maze.get(m_current.x, m_current.y).connections = 0b1111; // All walls open
 
-    if (m_step > 100)
+    if (m_step > 100U)
         m_finished = true;
 
     return !m_finished;
@@ -46,7 +47,7 @@ bool MazeGenerator::finished() const
     return m_finished;
 }
 
-int MazeGenerator::stepCount() const
+std::uint32_t MazeGenerator::stepCount() const
 {
     return m_step;
 }

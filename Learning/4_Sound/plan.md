@@ -141,78 +141,7 @@
 
 ## **Proposed Folder & File Structure**
 ```
-A-Maze-ing_Pac-Man/
-│
-├── include/
-│ ├── engine/ # Core engine interfaces & base classes
-│ │ ├── GameEngine.hpp
-│ │ ├── GameState.hpp
-│ │ └── Timer.hpp
-│ │
-│ ├── map/
-│ │ ├── Map.hpp
-│ │ ├── MazeGenerator.hpp
-│ │ └── MapHistory.hpp # [TODO] placeholder
-│ │
-│ ├── renderer/
-│ │ ├── Renderer.hpp # Base interface
-│ │ ├── TerminalRenderer.hpp
-│ │ ├── SDLRectRenderer.hpp
-│ │ └── SDLPixelRenderer.hpp # [TODO] placeholder
-│ │
-│ ├── sound/
-│ │ ├── SoundManager.hpp
-│ │ └── MusicManager.hpp # [TODO] placeholder
-│ │
-│ ├── game/ # Pac-Man specific
-│ │ ├── Player.hpp
-│ │ ├── Enemy.hpp
-│ │ └── Gameplay.hpp
-│ │
-│ └── utils/
-│ ├── Logger.hpp
-│ ├── Config.hpp
-│ └── Input.hpp
-│
-├── src/
-│ ├── engine/
-│ │ ├── GameEngine.cpp
-│ │ ├── GameState.cpp
-│ │ └── Timer.cpp
-│ │
-│ ├── map/
-│ │ ├── Map.cpp
-│ │ ├── MazeGenerator.cpp
-│ │ └── MapHistory.cpp # [TODO] placeholder
-│ │
-│ ├── renderer/
-│ │ ├── TerminalRenderer.cpp
-│ │ ├── SDLRectRenderer.cpp
-│ │ └── SDLPixelRenderer.cpp # [TODO] placeholder
-│ │
-│ ├── sound/
-│ │ ├── SoundManager.cpp
-│ │ └── MusicManager.cpp # [TODO] placeholder
-│ │
-│ ├── game/
-│ │ ├── Player.cpp
-│ │ ├── Enemy.cpp
-│ │ └── Gameplay.cpp
-│ │
-│ └── utils/
-│ ├── Logger.cpp
-│ ├── Config.cpp
-│ └── Input.cpp
-│
-├── assets/
-│ ├── images/ # Pac-Man sprites, tiles
-│ ├── sounds/ # Sound effects & music
-│ └── maps/ # Predefined map files
-│
-├── examples/ # Example projects / test games
-│
-├── CMakeLists.txt / Makefile # Build system
-└── README.md
+[TODO]
 ```
 
 **Notes on placeholders:**

@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-uint32_t const COLOURS[5] = {
+std::uint32_t const COLOURS[5] = {
     0x333333FF, // EMPTY
     0x007F00FF, // PROCESSING
     0x0000FFFF, // PATH
@@ -11,7 +11,7 @@ uint32_t const COLOURS[5] = {
     0xFFFFFFFF  // END
 };
 
-enum class CellType :uint8_t {
+enum class CellType : std::uint8_t {
     EMPTY,
     PROCESSING,
     PATH,
@@ -21,7 +21,7 @@ enum class CellType :uint8_t {
     CELL_TYPE_COUNT
 };
 
-enum class ConnectionNumber : uint8_t {
+enum class ConnectionNumber : std::uint8_t {
     NONE,
     ONE,
     TWO,
@@ -29,14 +29,14 @@ enum class ConnectionNumber : uint8_t {
     FOUR
 };
 
-enum class Direction : uint8_t {
+enum class Direction : std::uint8_t {
     North = 1,
     East  = 2,
     South = 4,
     West  = 8
 };
 
-enum class Directions : uint8_t {
+enum class Directions : std::uint8_t {
     NORTH = 0,
     EAST  = 1,
     SOUTH = 2,

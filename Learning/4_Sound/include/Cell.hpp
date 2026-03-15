@@ -3,5 +3,5 @@
 
 struct Cell
 {
-    uint8_t connections = 0;
+    std::uint8_t connections = 0;
 };

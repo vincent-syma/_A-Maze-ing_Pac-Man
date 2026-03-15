@@ -1,17 +1,19 @@
 #pragma once
 
+#include <cstdint>
+
 class Grid
 {
 protected:
-    int m_width;
-    int m_height;
+    std::uint32_t m_width;
+    std::uint32_t m_height;
 
-    int index(int x, int y) const
+    std::uint32_t index(std::uint32_t x, std::uint32_t y) const
     {
         return y * m_width + x;
     }
 
 public:
-    int width() const { return m_width; }
-    int height() const { return m_height; }
+    std::uint32_t width() const { return m_width; }
+    std::uint32_t height() const { return m_height; }
 };

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-enum class TileType : uint8_t
+enum class TileType : std::uint8_t
 {
     Empty = 0,
     Wall,

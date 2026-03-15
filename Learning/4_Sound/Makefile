@@ -32,7 +32,8 @@ $(SRC_DIR)/map/Map.cpp \
 $(SRC_DIR)/map/BoolOverlay.cpp \
 $(SRC_DIR)/map/MapEditor.cpp \
 $(SRC_DIR)/render/SDLRenderer.cpp \
-$(SRC_DIR)/games/pacman/PacmanGame.cpp
+$(SRC_DIR)/games/pacman/PacmanGame.cpp \
+$(SRC_DIR)/utils/getTime.cpp
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)

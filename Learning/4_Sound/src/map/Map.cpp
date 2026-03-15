@@ -1,21 +1,22 @@
+#include <cstdint>
 #include "map/Map.hpp"
 
-Map::Map(int w, int h)
+Map::Map(std::uint32_t w, std::uint32_t h)
     : m_width(w), m_height(h), tiles(w * h, TileType::Empty)
 {
 }
 
-int Map::index(int x, int y) const
+std::uint32_t Map::index(std::uint32_t x, std::uint32_t y) const
 {
     return y * m_width + x;
 }
 
-TileType Map::get(int x, int y) const
+TileType Map::get(std::uint32_t x, std::uint32_t y) const
 {
     return tiles[index(x, y)];
 }
 
-TileType& Map::at(int x, int y)
+TileType& Map::at(std::uint32_t x, std::uint32_t y)
 {
     return tiles[index(x, y)];
 }
@@ -30,18 +31,18 @@ TileType& Map::at(Position p)
     return at(p.x, p.y);
 }
 
-bool Map::inBounds(int x, int y) const
+bool Map::inBounds(std::uint32_t x, std::uint32_t y) const
 {
     return x >= 0 && y >= 0 &&
            x < m_width && y < m_height;
 }
 
-int Map::width() const
+std::uint32_t Map::width() const
 {
     return m_width;
 }
 
-int Map::height() const
+std::uint32_t Map::height() const
 {
     return m_height;
 }

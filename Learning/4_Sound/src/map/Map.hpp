@@ -1,44 +1,35 @@
 #pragma once
 
 #include <vector>
+#include <cstdint>
+#include "TileType.hpp"
+#include "Position.hpp"
 
-enum class TileType
-{
-    Empty,
-    Wall,
-    Pellet,
-    PowerPellet
-};
 
-struct Position
-{
-    int x;
-    int y;
-};
 
 class Map
 {
 public:
-    Map(int w, int h);
+    Map(std::uint32_t w, std::uint32_t h);
 
-    TileType get(int x, int y) const;
-    TileType& at(int x, int y);
+    TileType get(std::uint32_t x, std::uint32_t y) const;
+    TileType& at(std::uint32_t x, std::uint32_t y);
 
     TileType get(Position p) const;
     TileType& at(Position p);
 
-    bool inBounds(int x, int y) const;
+    bool inBounds(std::uint32_t x, std::uint32_t y) const;
 
-    int width() const;
-    int height() const;
+    std::uint32_t width() const;
+    std::uint32_t height() const;
 
 private:
-    int m_width;
-    int m_height;
+    std::uint32_t m_width;
+    std::uint32_t m_height;
 
     std::vector<TileType> tiles;
 
-    int index(int x, int y) const;
+    std::uint32_t index(std::uint32_t x, std::uint32_t y) const;
 
 friend class MapEditor;
 };

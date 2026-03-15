@@ -1,15 +1,16 @@
 #pragma once
 
 #include <vector>
+#include <cstdint>
 #include "core/Grid.hpp"
 
 class BoolOverlay : public Grid
 {
 public:
-    BoolOverlay(int w, int h);
+    BoolOverlay(std::uint32_t w, std::uint32_t h);
 
-    bool get(int x, int y) const;
-    void set(int x, int y, bool value);
+    bool get(std::uint32_t x, std::uint32_t y) const;
+    void set(std::uint32_t x, std::uint32_t y, bool value);
 
     void clear();
 

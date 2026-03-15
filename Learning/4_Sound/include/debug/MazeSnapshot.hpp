@@ -1,11 +1,13 @@
 #pragma once
 
+#include <cstdint>
+
 #include "map/Map.hpp"
 #include "map/BoolOverlay.hpp"
 
 struct MazeSnapshot
 {
-    int step;
+    std::uint32_t step;
 
     Map map;
 
@@ -15,7 +17,7 @@ struct MazeSnapshot
     Position current;
 
     MazeSnapshot(
-        int step_,
+        std::uint32_t step_,
         const Map& map_,
         const BoolOverlay& visited_,
         const BoolOverlay& frontier_,

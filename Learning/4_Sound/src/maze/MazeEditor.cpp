@@ -1,3 +1,5 @@
+
+#include <cstdint>
 #include "MazeEditor.hpp"
 
 MazeEditor::MazeEditor(Maze& m)
@@ -6,11 +8,11 @@ MazeEditor::MazeEditor(Maze& m)
 
 void MazeEditor::generate()
 {
-    for (int y = 0; y < maze.height(); y++)
+    for (std::uint32_t y = 0U; y < maze.height(); y++)
     {
-        for (int x = 0; x < maze.width(); x++)
+        for (std::uint32_t x = 0U; x < maze.width(); x++)
         {
-            maze.get(x,y).connections = 0;
+            maze.get(x,y).connections = 0U;
         }
     }
 }
