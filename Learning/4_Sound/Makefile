@@ -2,7 +2,7 @@
 # Project
 # ==========================================
 
-NAME = pacman
+NAME = pacman_game
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -MMD -MP
